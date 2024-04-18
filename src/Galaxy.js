@@ -212,7 +212,23 @@ const Galaxy = () => {
     window.addEventListener("resize", handleResize);
   }, []);
 
-  return <div ref={ref}></div>;
+  return (
+    <div ref={ref} style={{ position: "relative" }}>
+      <div
+        style={{
+          position: "absolute",
+          color: "white",
+          top: "10px",
+          left: "10px",
+          fontSize: "2em",
+          zIndex: 1,
+        }}
+      >
+        Project Orientation Day <br />
+        Disclaimer: ห้ามถ่ายลง Social Media โดยไม่ได้รับอนุญาต
+      </div>
+    </div>
+  );
 };
 
 export default Galaxy;
