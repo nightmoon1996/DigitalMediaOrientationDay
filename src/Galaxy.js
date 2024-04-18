@@ -103,6 +103,7 @@ const Galaxy = () => {
     ];
 
     let planet;
+    let planets = [];
 
     const positions = [
       { x: 1, y: 0, z: 2 },
@@ -113,6 +114,17 @@ const Galaxy = () => {
       { x: -3, y: 0, z: -3 },
       { x: 1, y: 0, z: -1 },
       { x: -1, y: 0, z: 1 },
+    ];
+
+    const planetType = [
+      "DGA",
+      "GAD",
+      "Game",
+      "Interactive",
+      "Esport",
+      "VisualEffect",
+      "Animation2D",
+      "Animation3D",
     ];
 
     // loop through colors and create a planet for each
@@ -126,13 +138,19 @@ const Galaxy = () => {
       // set position of the planet
       planet.position.set(positions[i].x, positions[i].y, positions[i].z);
 
+      // set type of the planet
+      planet.type = planetType[i];
+
       scene.add(planet);
+      planets.push(planet);
     }
 
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
 
-    window.addEventListener("mousemove", (event) => {
+    let selectedPlanet = null;
+
+    window.addEventListener("mousedown", (event) => {
       event.preventDefault();
 
       mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
@@ -140,23 +158,24 @@ const Galaxy = () => {
 
       raycaster.setFromCamera(mouse, camera);
 
-      const intersects = raycaster.intersectObjects(scene.children);
+      const intersects = raycaster.intersectObjects(planets);
+
+      if (intersects.length > 0) {
+        selectedPlanet = intersects[0].object;
+      }
 
       for (let i = 0; i < intersects.length; i++) {
-        if (intersects[i].object.type === planet) {
-          // Planet was clicked
-          controls.enabled = false;
-          camera.position.set(
-            planet.position.x,
-            planet.position.y,
-            planet.position.z + 5
-          );
+        console.log("Planet was clicked");
 
-          // show description box
-          const descriptionBox = document.getElementById("description-box");
-          descriptionBox.style.display = "block";
-          descriptionBox.textContent = "Planet description goes here.";
-        }
+        // show description box
+        const descriptionBox = document.getElementById("description-box");
+        descriptionBox.style.display = "block";
+        descriptionBox.innerHTML = selectedPlanet.type;
+
+        // hide description box after 3 seconds
+        setTimeout(() => {
+          descriptionBox.style.display = "none";
+        }, 3000);
       }
     });
 
@@ -245,6 +264,10 @@ const Galaxy = () => {
 
     const animate = () => {
       requestAnimationFrame(animate);
+
+      if (selectedPlanet) {
+        selectedPlanet.scale.lerp(new THREE.Vector3(1.5, 1.5, 1.5), 0.1);
+      }
 
       // Rotate the galaxy slowly
       scene.rotation.y += 0.0005;
