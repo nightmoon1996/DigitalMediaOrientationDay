@@ -22,6 +22,7 @@ const Galaxy = () => {
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.autoClear = false;
+    renderer.logarithmicDepthBuffer = false;
     const isIOS =
       /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
     renderer.setPixelRatio(
