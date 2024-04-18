@@ -97,11 +97,37 @@ const Galaxy = () => {
     controls.minDistance = 3;
     controls.maxDistance = 10;
 
-    const planetGeometry = new THREE.SphereGeometry(0.5, 32, 32);
-    const planetMaterial = new THREE.MeshBasicMaterial({ color: 0x48cf48 });
-    const planet = new THREE.Mesh(planetGeometry, planetMaterial);
-    planet.position.set(3, 0, 0);
-    scene.add(planet);
+    const colors = [
+      0x48cf48, 0x48cf48, 0x48cf48, 0x48cf48, 0x48cf48, 0x48cf48, 0x48cf48,
+      0x48cf48,
+    ];
+
+    let planet;
+
+    const positions = [
+      { x: 1, y: 0, z: 2 },
+      { x: -2, y: 0, z: 3 },
+      { x: 3, y: 0, z: -1 },
+      { x: -1, y: 0, z: -2 },
+      { x: 2, y: 0, z: 1 },
+      { x: -3, y: 0, z: -3 },
+      { x: 1, y: 0, z: -1 },
+      { x: -1, y: 0, z: 1 },
+    ];
+
+    // loop through colors and create a planet for each
+    for (let i = 0; i < colors.length; i++) {
+      const planetGeometry = new THREE.SphereGeometry(0.2, 32, 32);
+      const planetMaterial = new THREE.MeshBasicMaterial({
+        color: colors[i],
+      });
+      const planet = new THREE.Mesh(planetGeometry, planetMaterial);
+
+      // set position of the planet
+      planet.position.set(positions[i].x, positions[i].y, positions[i].z);
+
+      scene.add(planet);
+    }
 
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
