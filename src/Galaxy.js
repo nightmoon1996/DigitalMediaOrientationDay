@@ -22,7 +22,11 @@ const Galaxy = () => {
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.autoClear = false;
-    renderer.setPixelRatio(window.devicePixelRatio);
+    const isIOS =
+      /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    renderer.setPixelRatio(
+      isIOS ? Math.min(window.devicePixelRatio, 2) : window.devicePixelRatio
+    );
 
     window.addEventListener("resize", () => {
       camera.aspect = window.innerWidth / window.innerHeight;
