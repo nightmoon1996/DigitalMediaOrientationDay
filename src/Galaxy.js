@@ -302,6 +302,7 @@ const Galaxy = () => {
         }}
       >
         Project Orientation Day <br />
+        DEV Test Build 1 <br />
         Disclaimer: ห้ามถ่ายลง Social Media โดยไม่ได้รับอนุญาต
       </div>
       <div id="description-box" style={{ display: "none" }}>
