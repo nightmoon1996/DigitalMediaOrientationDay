@@ -110,7 +110,7 @@ const Galaxy = () => {
     scene.add(new THREE.AmbientLight(0x404040));
     // **Galaxy Generation**
     const parameters = {
-      count: 50000, // Number of stars
+      count: isMobile ? 25000 : 50000, // Number of stars
       size: 0.01, // Size of individual stars
       radius: 5, // Radius of the galaxy
       branches: 8, // Number of spiral arms
