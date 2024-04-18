@@ -24,6 +24,13 @@ const Galaxy = () => {
     renderer.autoClear = false;
     renderer.setPixelRatio(window.devicePixelRatio);
 
+    window.addEventListener("resize", () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      composer.setSize(window.innerWidth, window.innerHeight);
+    });
+
     camera.position.z = 3;
     camera.position.y = 2;
     camera.position.x = 0;
@@ -36,7 +43,7 @@ const Galaxy = () => {
 
     const bloomPass = new UnrealBloomPass(
       new THREE.Vector2(window.innerWidth, window.innerHeight),
-      1.5,
+      window.innerWidth > 480 ? 1.5 : 0.5,
       0.4,
       0.85
     );
