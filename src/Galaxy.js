@@ -97,6 +97,43 @@ const Galaxy = () => {
     controls.minDistance = 3;
     controls.maxDistance = 10;
 
+    const planetGeometry = new THREE.SphereGeometry(0.5, 32, 32);
+    const planetMaterial = new THREE.MeshBasicMaterial({ color: 0x48cf48 });
+    const planet = new THREE.Mesh(planetGeometry, planetMaterial);
+    planet.position.set(3, 0, 0);
+    scene.add(planet);
+
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
+
+    window.addEventListener("mousemove", (event) => {
+      event.preventDefault();
+
+      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+      raycaster.setFromCamera(mouse, camera);
+
+      const intersects = raycaster.intersectObjects(scene.children);
+
+      for (let i = 0; i < intersects.length; i++) {
+        if (intersects[i].object.type === planet) {
+          // Planet was clicked
+          controls.enabled = false;
+          camera.position.set(
+            planet.position.x,
+            planet.position.y,
+            planet.position.z + 5
+          );
+
+          // show description box
+          const descriptionBox = document.getElementById("description-box");
+          descriptionBox.style.display = "block";
+          descriptionBox.textContent = "Planet description goes here.";
+        }
+      }
+    });
+
     scene.add(new THREE.AmbientLight(0x404040));
     // **Galaxy Generation**
     const parameters = {
@@ -107,8 +144,8 @@ const Galaxy = () => {
       spin: 1, // Spin rate
       randomness: 0.2, // Randomness in star positions
       randomnessPower: 3, // Intensity of randomness
-      insideColor: 0x48cf48, // Color of center 0xff7308, 0xc22987
-      outsideColor: 0xbfc9bf, // Color at edge 0xd303fc, 0x399939
+      insideColor: 0x48cf48, // Color of center 0xff7308, 0x48cf48
+      outsideColor: 0xffb3fc, // Color at edge 0xd303fc, 0xbfc9bf
     };
 
     let geometry = null;
@@ -217,6 +254,9 @@ const Galaxy = () => {
       >
         Project Orientation Day <br />
         Disclaimer: ห้ามถ่ายลง Social Media โดยไม่ได้รับอนุญาต
+      </div>
+      <div id="description-box" style={{ display: "none" }}>
+        Planet description
       </div>
     </div>
   );
