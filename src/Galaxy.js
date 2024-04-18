@@ -25,6 +25,11 @@ const Galaxy = () => {
     renderer.logarithmicDepthBuffer = false;
     const isIOS =
       /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+    const isMobile =
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      );
     renderer.setPixelRatio(
       isIOS ? Math.min(window.devicePixelRatio, 2) : window.devicePixelRatio
     );
@@ -79,8 +84,13 @@ const Galaxy = () => {
     const composer = new EffectComposer(renderer);
     composer.addPass(renderScene);
     composer.addPass(bloomPass);
-    // composer.addPass(bokehPass);
-    composer.addPass(sSAOPass);
+
+    if (!isMobile) {
+      if (!isIOS) {
+        composer.addPass(bokehPass);
+        composer.addPass(sSAOPass);
+      }
+    }
     composer.addPass(outputPass);
 
     renderer.setSize(window.innerWidth, window.innerHeight);
