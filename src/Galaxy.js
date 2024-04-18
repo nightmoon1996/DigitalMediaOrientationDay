@@ -1,13 +1,12 @@
 import React, { useRef, useEffect } from "react";
-import { Canvas } from "@react-three/fiber";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass";
 import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/examples/jsm/postprocessing/OutputPass.js";
-import { BokehPass } from "three/examples/jsm/postprocessing/BokehPass.js";
 import { SSAOPass } from "three/examples/jsm/postprocessing/SSAOPass.js";
+
 const Galaxy = () => {
   const ref = useRef();
 
@@ -16,11 +15,11 @@ const Galaxy = () => {
     const camera = new THREE.PerspectiveCamera(
       75,
       window.innerWidth / window.innerHeight,
-      1,
+      0.01,
       100
     );
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    const renderer = new THREE.WebGLRenderer({ antialias: true, depth: true });
     renderer.autoClear = false;
     renderer.logarithmicDepthBuffer = false;
     const isIOS =
@@ -41,13 +40,13 @@ const Galaxy = () => {
       composer.setSize(window.innerWidth, window.innerHeight);
     });
 
-    camera.position.z = 3;
-    camera.position.y = 2;
+    camera.position.z = 0;
+    camera.position.y = 0;
     camera.position.x = 0;
 
-    camera.rotation.x = -0.5;
+    camera.rotation.x = 0;
     camera.rotation.y = 0;
-    camera.rotation.z = 0.1;
+    camera.rotation.z = 0;
 
     const renderScene = new RenderPass(scene, camera);
 
@@ -60,14 +59,6 @@ const Galaxy = () => {
     bloomPass.threshold = 0.4;
     bloomPass.strength = 2;
     bloomPass.radius = 0.9;
-
-    const bokehPass = new BokehPass(scene, camera, {
-      focus: 100,
-      aperture: 0.005,
-      maxblur: 0.018,
-      width: window.innerWidth,
-      height: window.innerHeight,
-    });
 
     const sSAOPass = new SSAOPass(
       scene,
@@ -87,7 +78,6 @@ const Galaxy = () => {
 
     if (!isMobile) {
       if (!isIOS) {
-        composer.addPass(bokehPass);
         composer.addPass(sSAOPass);
       }
     }
@@ -198,6 +188,7 @@ const Galaxy = () => {
 
       renderer.clear();
       controls.update();
+
       composer.render(scene, camera);
     };
 
