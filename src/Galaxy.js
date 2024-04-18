@@ -81,6 +81,7 @@ const Galaxy = () => {
     controls.dampingFactor = 0.05;
     controls.maxPolarAngle = Math.PI / 3;
     controls.minPolarAngle = Math.PI / 4;
+    controls.enablePan = false;
     controls.minDistance = 3;
     controls.maxDistance = 10;
 
