@@ -107,8 +107,8 @@ const Galaxy = () => {
       spin: 1, // Spin rate
       randomness: 0.2, // Randomness in star positions
       randomnessPower: 3, // Intensity of randomness
-      insideColor: 0xff6030, // Color of center
-      outsideColor: 0x1b3984, // Color at edge
+      insideColor: 0x48cf48, // Color of center 0xff7308, 0xc22987
+      outsideColor: 0xbfc9bf, // Color at edge 0xd303fc, 0x399939
     };
 
     let geometry = null;
