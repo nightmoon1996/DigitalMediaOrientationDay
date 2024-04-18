@@ -79,7 +79,7 @@ const Galaxy = () => {
     const composer = new EffectComposer(renderer);
     composer.addPass(renderScene);
     composer.addPass(bloomPass);
-    composer.addPass(bokehPass);
+    // composer.addPass(bokehPass);
     composer.addPass(sSAOPass);
     composer.addPass(outputPass);
 
