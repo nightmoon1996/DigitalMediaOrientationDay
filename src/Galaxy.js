@@ -190,7 +190,7 @@ const Galaxy = () => {
       randomness: 0.2, // Randomness in star positions
       randomnessPower: 3, // Intensity of randomness
       insideColor: 0x48cf48, // Color of center 0xff7308, 0x48cf48
-      outsideColor: 0xffb3fc, // Color at edge 0xd303fc, 0xbfc9bf
+      outsideColor: 0x882de3, // Color at edge 0xd303fc, 0xffb3fc
     };
 
     let geometry = null;
