@@ -172,6 +172,16 @@ const Galaxy = () => {
         descriptionBox.style.display = "block";
         descriptionBox.innerHTML = selectedPlanet.type;
 
+        const vector = new THREE.Vector3();
+        vector.setFromMatrixPosition(selectedPlanet.matrixWorld);
+        vector.project(camera);
+
+        const x = (vector.x * 0.5 + 0.5) * window.innerWidth;
+        const y = (vector.y * -0.5 + 0.5) * window.innerHeight;
+
+        descriptionBox.style.left = `${x}px`;
+        descriptionBox.style.top = `${y}px`;
+
         // hide description box after 3 seconds
         setTimeout(() => {
           descriptionBox.style.display = "none";
@@ -180,6 +190,7 @@ const Galaxy = () => {
     });
 
     scene.add(new THREE.AmbientLight(0x404040));
+
     // **Galaxy Generation**
     const parameters = {
       count: isMobile ? 25000 : 50000, // Number of stars
@@ -311,7 +322,7 @@ const Galaxy = () => {
           display: "none",
           position: "absolute",
           color: "white",
-          top: "30%",
+          top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
           zIndex: 2,
