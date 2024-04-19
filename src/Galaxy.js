@@ -287,6 +287,7 @@ const Galaxy = () => {
         }
 
         scaleTimeout = setTimeout(() => {
+          selectedPlanet.scale.lerp(new THREE.Vector3(1, 1, 1), 0.1);
           descriptionBox.style.opacity = "0";
         }, 3000);
       }
