@@ -149,6 +149,7 @@ const Galaxy = () => {
     const mouse = new THREE.Vector2();
 
     let selectedPlanet = null;
+    let scaleTimeout = null;
 
     window.addEventListener("mousedown", (event) => {
       event.preventDefault();
@@ -280,6 +281,14 @@ const Galaxy = () => {
 
         descriptionBox.style.left = `${x}px`;
         descriptionBox.style.top = `${y}px`;
+        descriptionBox.style.opacity = "1";
+        if (scaleTimeout) {
+          clearTimeout(scaleTimeout);
+        }
+
+        scaleTimeout = setTimeout(() => {
+          descriptionBox.style.opacity = "0";
+        }, 3000);
       }
 
       // Rotate the galaxy slowly
@@ -327,6 +336,8 @@ const Galaxy = () => {
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
+          transition: "opacity 0.5s ease-in-out",
+          opacity: 0,
           zIndex: 2,
           color: "white",
           backgroundColor: "rgba(0, 0, 0, 0.5)",
