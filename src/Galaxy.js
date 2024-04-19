@@ -172,16 +172,6 @@ const Galaxy = () => {
         descriptionBox.style.display = "block";
         descriptionBox.innerHTML = selectedPlanet.type;
 
-        const vector = new THREE.Vector3();
-        vector.setFromMatrixPosition(selectedPlanet.matrixWorld);
-        vector.project(camera);
-
-        const x = (vector.x * 0.5 + 0.5) * window.innerWidth;
-        const y = (vector.y * -0.5 + 0.5) * window.innerHeight;
-
-        descriptionBox.style.left = `${x}px`;
-        descriptionBox.style.top = `${y}px`;
-
         // hide description box after 3 seconds
         setTimeout(() => {
           descriptionBox.style.display = "none";
@@ -273,11 +263,23 @@ const Galaxy = () => {
 
     generateGalaxy();
 
+    const descriptionBox = document.getElementById("description-box");
+
     const animate = () => {
       requestAnimationFrame(animate);
 
       if (selectedPlanet) {
         selectedPlanet.scale.lerp(new THREE.Vector3(1.5, 1.5, 1.5), 0.1);
+
+        const vector = new THREE.Vector3();
+        vector.setFromMatrixPosition(selectedPlanet.matrixWorld);
+        vector.project(camera);
+
+        const x = (vector.x * 0.5 + 0.5) * window.innerWidth;
+        const y = (vector.y * -0.5 + 0.5) * window.innerHeight;
+
+        descriptionBox.style.left = `${x}px`;
+        descriptionBox.style.top = `${y}px`;
       }
 
       // Rotate the galaxy slowly
