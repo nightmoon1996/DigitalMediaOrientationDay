@@ -305,7 +305,22 @@ const Galaxy = () => {
         DEV Test Build 1 <br />
         Disclaimer: ห้ามถ่ายลง Social Media โดยไม่ได้รับอนุญาต
       </div>
-      <div id="description-box" style={{ display: "none" }}>
+      <div
+        id="description-box"
+        style={{
+          display: "none",
+          position: "absolute",
+          color: "white",
+          top: "30%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          zIndex: 2,
+          color: "white",
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
+          padding: "10px",
+          borderRadius: "5px",
+        }}
+      >
         Planet description
       </div>
     </div>
