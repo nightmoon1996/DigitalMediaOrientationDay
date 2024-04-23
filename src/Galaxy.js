@@ -305,8 +305,8 @@ const Galaxy = () => {
           left: "10px",
           fontSize: "2em",
           zIndex: 1,
-          fontFamily: "Russo One",
-          fontWeight: "400",
+          // fontFamily: "Russo One",
+          // fontWeight: "400",
         }}
       >
         Project Orientation Day <br />
@@ -337,8 +337,8 @@ const Galaxy = () => {
           backgroundColor: "rgba(0, 0, 0, 0.5)",
           padding: "10px",
           borderRadius: "5px",
-          fontFamily: "Russo One",
-          fontWeight: "400",
+          // fontFamily: "Russo One",
+          // fontWeight: "400",
         }}
       >
         <button
