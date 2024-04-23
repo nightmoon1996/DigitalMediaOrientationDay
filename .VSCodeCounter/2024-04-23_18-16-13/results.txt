@@ -1,0 +1,40 @@
+Date : 2024-04-23 18:16:13
+Directory : c:\Users\nk23a\OneDrive\Desktop\Work\DigitalMediaWebsite\digitalmedia\src
+Total : 13 files,  557 codes, 14 comments, 86 blanks, all 657 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JavaScript |          8 |        429 |         14 |         75 |        518 |
+| CSS        |          3 |         75 |          0 |         11 |         86 |
+| JSON       |          1 |         52 |          0 |          0 |         52 |
+| XML        |          1 |          1 |          0 |          0 |          1 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                         | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                            |         13 |        557 |         14 |         86 |        657 |
++----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                     | language   | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\Users\nk23a\OneDrive\Desktop\Work\DigitalMediaWebsite\digitalmedia\src\App.css            | CSS        |          0 |          0 |          1 |          1 |
+| c:\Users\nk23a\OneDrive\Desktop\Work\DigitalMediaWebsite\digitalmedia\src\App.js             | JavaScript |         15 |          0 |          2 |         17 |
+| c:\Users\nk23a\OneDrive\Desktop\Work\DigitalMediaWebsite\digitalmedia\src\App.test.js        | JavaScript |          7 |          0 |          2 |          9 |
+| c:\Users\nk23a\OneDrive\Desktop\Work\DigitalMediaWebsite\digitalmedia\src\Effects.js         | JavaScript |         54 |          0 |          3 |         57 |
+| c:\Users\nk23a\OneDrive\Desktop\Work\DigitalMediaWebsite\digitalmedia\src\Galaxy.js          | JavaScript |        304 |          7 |         59 |        370 |
+| c:\Users\nk23a\OneDrive\Desktop\Work\DigitalMediaWebsite\digitalmedia\src\Navbar.css         | CSS        |         59 |          0 |          9 |         68 |
+| c:\Users\nk23a\OneDrive\Desktop\Work\DigitalMediaWebsite\digitalmedia\src\Navbar.js          | JavaScript |         24 |          0 |          3 |         27 |
+| c:\Users\nk23a\OneDrive\Desktop\Work\DigitalMediaWebsite\digitalmedia\src\index.css          | CSS        |         16 |          0 |          1 |         17 |
+| c:\Users\nk23a\OneDrive\Desktop\Work\DigitalMediaWebsite\digitalmedia\src\index.js           | JavaScript |         12 |          3 |          3 |         18 |
+| c:\Users\nk23a\OneDrive\Desktop\Work\DigitalMediaWebsite\digitalmedia\src\logo.svg           | XML        |          1 |          0 |          0 |          1 |
+| c:\Users\nk23a\OneDrive\Desktop\Work\DigitalMediaWebsite\digitalmedia\src\planetData.json    | JSON       |         52 |          0 |          0 |         52 |
+| c:\Users\nk23a\OneDrive\Desktop\Work\DigitalMediaWebsite\digitalmedia\src\reportWebVitals.js | JavaScript |         12 |          0 |          2 |         14 |
+| c:\Users\nk23a\OneDrive\Desktop\Work\DigitalMediaWebsite\digitalmedia\src\setupTests.js      | JavaScript |          1 |          4 |          1 |          6 |
+| Total                                                                                        |            |        557 |         14 |         86 |        657 |
++----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
