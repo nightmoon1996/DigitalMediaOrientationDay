@@ -6,6 +6,7 @@ import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/examples/jsm/postprocessing/OutputPass.js";
 import { SSAOPass } from "three/examples/jsm/postprocessing/SSAOPass.js";
+import planetData from "./planetData.json";
 
 const Galaxy = () => {
   const ref = useRef();
@@ -105,41 +106,24 @@ const Galaxy = () => {
     let planet;
     let planets = [];
 
-    const positions = [
-      { x: 1, y: 0, z: 2 },
-      { x: -2, y: 0, z: 3 },
-      { x: 3, y: 0, z: -1 },
-      { x: -1, y: 0, z: -2 },
-      { x: 2, y: 0, z: 1 },
-      { x: -3, y: 0, z: -3 },
-      { x: 1, y: 0, z: -1 },
-      { x: -1, y: 0, z: 1 },
-    ];
-
-    const planetType = [
-      "DGA",
-      "GAD",
-      "Game",
-      "Interactive",
-      "Esport",
-      "VisualEffect",
-      "Animation2D",
-      "Animation3D",
-    ];
-
     // loop through colors and create a planet for each
-    for (let i = 0; i < colors.length; i++) {
+    for (let i = 0; i < planetData.planets.length; i++) {
+      const planetInfo = planetData.planets[i];
       const planetGeometry = new THREE.SphereGeometry(0.2, 32, 32);
       const planetMaterial = new THREE.MeshBasicMaterial({
-        color: colors[i],
+        color: 0x48cf48,
       });
       const planet = new THREE.Mesh(planetGeometry, planetMaterial);
 
       // set position of the planet
-      planet.position.set(positions[i].x, positions[i].y, positions[i].z);
+      planet.position.set(
+        planetInfo.position.x,
+        planetInfo.position.y,
+        planetInfo.position.z
+      );
 
       // set type of the planet
-      planet.type = planetType[i];
+      planet.type = planetInfo.type;
 
       scene.add(planet);
       planets.push(planet);
@@ -346,6 +330,13 @@ const Galaxy = () => {
           borderRadius: "5px",
         }}
       >
+        <h1 id="title" style={{ color: "white" }}>
+          Title
+        </h1>
+        <p id="information" style={{ color: "white" }}>
+          Information
+        </p>
+        <img id="image" src="" alt="Planet" style={{ width: "100px" }} />
         Planet description
       </div>
     </div>

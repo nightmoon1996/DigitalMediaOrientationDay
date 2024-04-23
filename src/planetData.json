@@ -1,0 +1,52 @@
+{
+    "planets": [
+        {
+            "color": "0x48cf48",
+            "position": { "x": 3, "y": 0, "z": 2 },
+            "type": "DGA",
+            "description": ""
+        },
+        {
+            "color": "0x48cf48",
+            "position": { "x": 1, "y": 0, "z": 2 },
+            "type": "GAD",
+            "description": ""
+        },
+        {
+            "color": "0x48cf48",
+            "position": { "x": 2, "y": 0, "z": 3 },
+            "type": "Game",
+            "description": ""
+        },
+        {
+            "color": "0x48cf48",
+            "position": { "x": -1, "y": 0, "z": -2 },
+            "type": "Interactive",
+            "description": ""
+        },
+        {
+            "color": "0x48cf48",
+            "position": { "x": 1, "y": 0, "z": -1 },
+            "type": "Esport",
+            "description": ""
+        },
+        {
+            "color": "0x48cf48",
+            "position": { "x": -2, "y": 0, "z": 3 },
+            "type": "VisualEffect",
+            "description": ""
+        },
+        {
+            "color": "0x48cf48",
+            "position": { "x": -1, "y": 0, "z": 2 },
+            "type": "Animation2D",
+            "description": ""
+        },
+        {
+            "color": "0x48cf48",
+            "position": { "x": -2, "y": 0, "z": -1 },
+            "type": "Animation3D",
+            "description": ""
+        }
+    ]
+}
