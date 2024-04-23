@@ -150,12 +150,22 @@ const Galaxy = () => {
       }
 
       for (let i = 0; i < intersects.length; i++) {
-        console.log("Planet was clicked");
-
         // show description box
         const descriptionBox = document.getElementById("description-box");
+        const titleElement = document.getElementById("title");
+        const descriptionElement = document.getElementById("description");
+        const imageElement = document.getElementById("image");
         descriptionBox.style.display = "block";
-        descriptionBox.innerHTML = selectedPlanet.type;
+        titleElement.textContent = selectedPlanet.type;
+
+        const planetInfo = planetData.planets.find(
+          (planet) => planet.type === selectedPlanet.type
+        );
+        if (planetInfo) {
+          descriptionElement.textContent = planetInfo.description;
+        }
+
+        imageElement.src = `./images/${selectedPlanet.type}.png`;
 
         // hide description box after 3 seconds
         setTimeout(() => {
@@ -315,6 +325,9 @@ const Galaxy = () => {
       <div
         id="description-box"
         style={{
+          width: "300px",
+          height: "200px",
+          overflow: "auto",
           display: "none",
           position: "absolute",
           color: "white",
@@ -333,11 +346,10 @@ const Galaxy = () => {
         <h1 id="title" style={{ color: "white" }}>
           Title
         </h1>
-        <p id="information" style={{ color: "white" }}>
-          Information
+        <p id="description" style={{ color: "white" }}>
+          Description
         </p>
-        <img id="image" src="" alt="Planet" style={{ width: "100px" }} />
-        Planet description
+        <img id="image" src="" alt="Planet" style={{ width: "50px" }} />
       </div>
     </div>
   );
