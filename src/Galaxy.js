@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass";
@@ -7,11 +7,24 @@ import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPa
 import { OutputPass } from "three/examples/jsm/postprocessing/OutputPass.js";
 import { SSAOPass } from "three/examples/jsm/postprocessing/SSAOPass.js";
 import planetData from "./planetData.json";
+import jsQR from "jsqr";
+import { useSpring, animated } from "@react-spring/web";
 // import { GeistSans } from "geist/font/sans";
 // import { GeistMono } from "geist/font/mono";
 
 const Galaxy = () => {
   const ref = useRef();
+  const videoRef = useRef();
+  const [qrScanOpen, setQrScanOpen] = useState(false);
+  const [scannedStamps, setScannedStamps] = useState([]);
+  const [qrValue, setQrValue] = useState(null);
+  const [qrError, setQrError] = useState(null);
+
+  const slideAnimation = useSpring({
+    from: { height: 0 },
+    to: { height: qrScanOpen ? "50vh" : 0 },
+    config: { duration: 500 },
+  });
 
   useEffect(() => {
     const scene = new THREE.Scene();
@@ -281,8 +294,61 @@ const Galaxy = () => {
       composer.render(scene, camera);
     };
 
-    animate();
+    const canvas = document.createElement("canvas");
 
+    let scanning = false;
+
+    const tick = () => {
+      if (
+        videoRef.current &&
+        videoRef.current.readyState === videoRef.current.HAVE_ENOUGH_DATA
+      ) {
+        canvas.height = videoRef.current.videoHeight;
+        canvas.width = videoRef.current.videoWidth;
+        const context = canvas.getContext("2d");
+        context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
+        const imageData = context.getImageData(
+          0,
+          0,
+          canvas.width,
+          canvas.height
+        );
+        const code = jsQR(imageData.data, imageData.width, imageData.height);
+
+        if (code) {
+          handleScan(code.data);
+          scanning = false;
+        }
+      }
+
+      if (scanning) {
+        requestAnimationFrame(tick);
+      }
+    };
+
+    const startScanning = () => {
+      navigator.mediaDevices
+        .getUserMedia({ video: { facingMode: "environment" } })
+        .then((stream) => {
+          videoRef.current.srcObject = stream;
+          videoRef.current.setAttribute("playsinline", true);
+          videoRef.current.play();
+          scanning = true;
+          requestAnimationFrame(tick);
+        })
+        .catch((err) => console.error("Error accessing camera: ", err));
+    };
+
+    const stopScanning = () => {
+      scanning = false;
+      if (videoRef.current && videoRef.current.srcObject) {
+        videoRef.current.srcObject.getTracks().forEach((track) => track.stop());
+      }
+    };
+
+    startScanning();
+
+    animate();
     // For responsiveness
     const handleResize = () => {
       camera.aspect = window.innerWidth / window.innerHeight;
@@ -290,7 +356,30 @@ const Galaxy = () => {
       renderer.setSize(window.innerWidth, window.innerHeight);
     };
     window.addEventListener("resize", handleResize);
+
+    return () => stopScanning();
   }, []);
+
+  const handleSwipeUp = () => {
+    setQrScanOpen(true);
+  };
+
+  const handleScan = (data) => {
+    if (data) {
+      setQrValue(data);
+      setQrError(null);
+
+      if (!scannedStamps.includes(data)) {
+        setScannedStamps([...scannedStamps, data]);
+
+        alert(
+          "New stamp collected! You now have ${scannedStamps.length} out of 5 stamps"
+        );
+      } else {
+        alert("You have already collected this stamp!");
+      }
+    }
+  };
 
   const isMobile =
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
@@ -327,7 +416,6 @@ const Galaxy = () => {
           },
           display: "none",
           position: "absolute",
-          color: "white",
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
