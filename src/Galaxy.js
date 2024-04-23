@@ -166,11 +166,6 @@ const Galaxy = () => {
         }
 
         imageElement.src = `./images/${selectedPlanet.type}.png`;
-
-        // hide description box after 3 seconds
-        setTimeout(() => {
-          descriptionBox.style.display = "none";
-        }, 3000);
       }
     });
 
@@ -279,11 +274,6 @@ const Galaxy = () => {
         if (scaleTimeout) {
           clearTimeout(scaleTimeout);
         }
-
-        scaleTimeout = setTimeout(() => {
-          // selectedPlanet.scale.lerp(new THREE.Vector3(1, 1, 1), 0.1);
-          descriptionBox.style.opacity = "0";
-        }, 3000);
       }
 
       // Rotate the galaxy slowly
