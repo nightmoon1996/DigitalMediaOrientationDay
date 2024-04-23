@@ -494,6 +494,7 @@ const Galaxy = () => {
           color: "white",
           textAlign: "center",
           lineHeight: "50px",
+          fontFamily: "sans-serif",
         }}
       >
         Swipe Up to Scan QR Code
