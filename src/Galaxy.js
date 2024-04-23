@@ -294,59 +294,59 @@ const Galaxy = () => {
       composer.render(scene, camera);
     };
 
-    const canvas = document.createElement("canvas");
+    // const canvas = document.createElement("canvas");
 
-    let scanning = false;
+    // let scanning = false;
 
-    const tick = () => {
-      if (
-        videoRef.current &&
-        videoRef.current.readyState === videoRef.current.HAVE_ENOUGH_DATA
-      ) {
-        canvas.height = videoRef.current.videoHeight;
-        canvas.width = videoRef.current.videoWidth;
-        const context = canvas.getContext("2d");
-        context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
-        const imageData = context.getImageData(
-          0,
-          0,
-          canvas.width,
-          canvas.height
-        );
-        const code = jsQR(imageData.data, imageData.width, imageData.height);
+    // const tick = () => {
+    //   if (
+    //     videoRef.current &&
+    //     videoRef.current.readyState === videoRef.current.HAVE_ENOUGH_DATA
+    //   ) {
+    //     canvas.height = videoRef.current.videoHeight;
+    //     canvas.width = videoRef.current.videoWidth;
+    //     const context = canvas.getContext("2d");
+    //     context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
+    //     const imageData = context.getImageData(
+    //       0,
+    //       0,
+    //       canvas.width,
+    //       canvas.height
+    //     );
+    //     const code = jsQR(imageData.data, imageData.width, imageData.height);
 
-        if (code) {
-          handleScan(code.data);
-          scanning = false;
-        }
-      }
+    //     if (code) {
+    //       handleScan(code.data);
+    //       scanning = false;
+    //     }
+    //   }
 
-      if (scanning) {
-        requestAnimationFrame(tick);
-      }
-    };
+    //   if (scanning) {
+    //     requestAnimationFrame(tick);
+    //   }
+    // };
 
-    const startScanning = () => {
-      navigator.mediaDevices
-        .getUserMedia({ video: { facingMode: "environment" } })
-        .then((stream) => {
-          videoRef.current.srcObject = stream;
-          videoRef.current.setAttribute("playsinline", true);
-          videoRef.current.play();
-          scanning = true;
-          requestAnimationFrame(tick);
-        })
-        .catch((err) => console.error("Error accessing camera: ", err));
-    };
+    // const startScanning = () => {
+    //   navigator.mediaDevices
+    //     .getUserMedia({ video: { facingMode: "environment" } })
+    //     .then((stream) => {
+    //       videoRef.current.srcObject = stream;
+    //       videoRef.current.setAttribute("playsinline", true);
+    //       videoRef.current.play();
+    //       scanning = true;
+    //       requestAnimationFrame(tick);
+    //     })
+    //     .catch((err) => console.error("Error accessing camera: ", err));
+    // };
 
-    const stopScanning = () => {
-      scanning = false;
-      if (videoRef.current && videoRef.current.srcObject) {
-        videoRef.current.srcObject.getTracks().forEach((track) => track.stop());
-      }
-    };
+    // const stopScanning = () => {
+    //   scanning = false;
+    //   if (videoRef.current && videoRef.current.srcObject) {
+    //     videoRef.current.srcObject.getTracks().forEach((track) => track.stop());
+    //   }
+    // };
 
-    startScanning();
+    // startScanning();
 
     animate();
     // For responsiveness
@@ -357,57 +357,57 @@ const Galaxy = () => {
     };
     window.addEventListener("resize", handleResize);
 
-    const swipeUpArea = document.getElementById("swipe-up-area");
-    const qrScanContainer = document.getElementById("qr-scan-container");
+    // const swipeUpArea = document.getElementById("swipe-up-area");
+    // const qrScanContainer = document.getElementById("qr-scan-container");
 
-    let touchStartY = null;
+    // let touchStartY = null;
 
-    const handleTouchStart = (event) => {
-      touchStartY = event.touches[0].clientY;
-    };
+    // const handleTouchStart = (event) => {
+    //   touchStartY = event.touches[0].clientY;
+    // };
 
-    const handleTouchMove = (event) => {
-      if (touchStartY) return;
+    // const handleTouchMove = (event) => {
+    //   if (touchStartY) return;
 
-      const touchEndY = event.touches[0].clientY;
-      const distance = touchStartY - touchEndY;
+    //   const touchEndY = event.touches[0].clientY;
+    //   const distance = touchStartY - touchEndY;
 
-      if (distance > 50) {
-        setQrScanOpen(true);
-        touchStartY = null;
-      }
-    };
+    //   if (distance > 50) {
+    //     setQrScanOpen(true);
+    //     touchStartY = null;
+    //   }
+    // };
 
-    swipeUpArea.addEventListener("touchstart", handleTouchStart);
-    swipeUpArea.addEventListener("touchmove", handleTouchMove);
+    // swipeUpArea.addEventListener("touchstart", handleTouchStart);
+    // swipeUpArea.addEventListener("touchmove", handleTouchMove);
 
     return () => {
-      swipeUpArea.removeEventListener("touchstart", handleTouchStart);
-      swipeUpArea.removeEventListener("touchmove", handleTouchMove);
-      stopScanning();
+      // swipeUpArea.removeEventListener("touchstart", handleTouchStart);
+      // swipeUpArea.removeEventListener("touchmove", handleTouchMove);
+      // stopScanning();
     };
   }, []);
 
-  const handleSwipeUp = () => {
-    setQrScanOpen(true);
-  };
+  // const handleSwipeUp = () => {
+  //   setQrScanOpen(true);
+  // };
 
-  const handleScan = (data) => {
-    if (data) {
-      setQrValue(data);
-      setQrError(null);
+  // const handleScan = (data) => {
+  //   if (data) {
+  //     setQrValue(data);
+  //     setQrError(null);
 
-      if (!scannedStamps.includes(data)) {
-        setScannedStamps([...scannedStamps, data]);
+  //     if (!scannedStamps.includes(data)) {
+  //       setScannedStamps([...scannedStamps, data]);
 
-        alert(
-          "New stamp collected! You now have ${scannedStamps.length} out of 5 stamps"
-        );
-      } else {
-        alert("You have already collected this stamp!");
-      }
-    }
-  };
+  //       alert(
+  //         "New stamp collected! You now have ${scannedStamps.length} out of 5 stamps"
+  //       );
+  //     } else {
+  //       alert("You have already collected this stamp!");
+  //     }
+  //   }
+  // };
 
   const isMobile =
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
