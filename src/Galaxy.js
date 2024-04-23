@@ -338,6 +338,22 @@ const Galaxy = () => {
           borderRadius: "5px",
         }}
       >
+        <button
+          style={{
+            position: "absolute",
+            right: "10px",
+            top: "10px",
+            color: "white",
+            backgroundColor: "transparent",
+            border: "none",
+          }}
+          onClick={() => {
+            const descriptionBox = document.getElementById("description-box");
+            descriptionBox.style.display = "none";
+          }}
+        >
+          X
+        </button>
         <h1 id="title" style={{ color: "white" }}>
           Title
         </h1>
