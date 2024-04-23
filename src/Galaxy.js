@@ -305,10 +305,12 @@ const Galaxy = () => {
           left: "10px",
           fontSize: "2em",
           zIndex: 1,
+          fontFamily: "Russo One",
+          fontWeight: "400",
         }}
       >
         Project Orientation Day <br />
-        DEV Test Build 1 <br />
+        DEV Test Build 1.1 <br />
         Disclaimer: ห้ามถ่ายลง Social Media โดยไม่ได้รับอนุญาต
       </div>
       <div
@@ -335,6 +337,8 @@ const Galaxy = () => {
           backgroundColor: "rgba(0, 0, 0, 0.5)",
           padding: "10px",
           borderRadius: "5px",
+          fontFamily: "Russo One",
+          fontWeight: "400",
         }}
       >
         <button
