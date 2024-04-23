@@ -98,12 +98,6 @@ const Galaxy = () => {
     controls.minDistance = 3;
     controls.maxDistance = 10;
 
-    const colors = [
-      0x48cf48, 0x48cf48, 0x48cf48, 0x48cf48, 0x48cf48, 0x48cf48, 0x48cf48,
-      0x48cf48,
-    ];
-
-    let planet;
     let planets = [];
 
     // loop through colors and create a planet for each
@@ -325,7 +319,7 @@ const Galaxy = () => {
           overflow: "auto",
           scrollbarWidth: "none",
           msOverflowStyle: "none",
-          "&::-webkit-scrollbar": {
+          "&::WebkitScrollbar": {
             display: "none" /* For Chrome, Safari and Opera */,
           },
           display: "none",
