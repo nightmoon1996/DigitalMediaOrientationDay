@@ -306,6 +306,11 @@ const Galaxy = () => {
     window.addEventListener("resize", handleResize);
   }, []);
 
+  const isMobile =
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
+
   return (
     <div ref={ref} style={{ position: "relative" }}>
       <div
@@ -325,8 +330,8 @@ const Galaxy = () => {
       <div
         id="description-box"
         style={{
-          width: "300px",
-          height: "200px",
+          width: isMobile ? "200px" : "300px",
+          height: isMobile ? "150px" : "200px",
           overflow: "auto",
           display: "none",
           position: "absolute",
