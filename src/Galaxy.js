@@ -357,7 +357,35 @@ const Galaxy = () => {
     };
     window.addEventListener("resize", handleResize);
 
-    return () => stopScanning();
+    const swipeUpArea = document.getElementById("swipe-up-area");
+    const qrScanContainer = document.getElementById("qr-scan-container");
+
+    let touchStartY = null;
+
+    const handleTouchStart = (event) => {
+      touchStartY = event.touches[0].clientY;
+    };
+
+    const handleTouchMove = (event) => {
+      if (touchStartY) return;
+
+      const touchEndY = event.touches[0].clientY;
+      const distance = touchStartY - touchEndY;
+
+      if (distance > 50) {
+        setQrScanOpen(true);
+        touchStartY = null;
+      }
+    };
+
+    swipeUpArea.addEventListener("touchstart", handleTouchStart);
+    swipeUpArea.addEventListener("touchmove", handleTouchMove);
+
+    return () => {
+      swipeUpArea.removeEventListener("touchstart", handleTouchStart);
+      swipeUpArea.removeEventListener("touchmove", handleTouchMove);
+      stopScanning();
+    };
   }, []);
 
   const handleSwipeUp = () => {
@@ -454,6 +482,37 @@ const Galaxy = () => {
         </p>
         <img id="image" src="" alt="Planet" style={{ width: "50px" }} />
       </div>
+      <div
+        id="swipe-up-area"
+        style={{
+          position: "fixed",
+          bottom: "0",
+          left: "0",
+          width: "100%",
+          height: "50px",
+          backgroundColor: "rgba(0, 0, 0, 0.8)",
+          color: "white",
+          textAlign: "center",
+          lineHeight: "50px",
+        }}
+      >
+        Swipe Up to Scan QR Code
+      </div>
+
+      <animated.div
+        id="qr-scan-container"
+        style={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          width: "100%",
+          height: slideAnimation.height,
+          backgroundColor: "white",
+          overflow: "hidden",
+          transition: "height 0.5s ease-in-out",
+          zIndex: 3,
+        }}
+      ></animated.div>
     </div>
   );
 };
