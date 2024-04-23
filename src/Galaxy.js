@@ -323,6 +323,11 @@ const Galaxy = () => {
           width: isMobile ? "60vw" : "15vw",
           height: isMobile ? "35vh" : "15vh",
           overflow: "auto",
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+          "&::-webkit-scrollbar": {
+            display: "none" /* For Chrome, Safari and Opera */,
+          },
           display: "none",
           position: "absolute",
           color: "white",
@@ -350,6 +355,7 @@ const Galaxy = () => {
           onClick={() => {
             const descriptionBox = document.getElementById("description-box");
             descriptionBox.style.display = "none";
+            descriptionBox.style.opacity = "0";
           }}
         >
           X
