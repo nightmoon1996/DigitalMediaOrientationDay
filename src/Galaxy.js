@@ -330,8 +330,8 @@ const Galaxy = () => {
       <div
         id="description-box"
         style={{
-          width: isMobile ? "15vw" : "15vw",
-          height: isMobile ? "15vh" : "15vh",
+          width: isMobile ? "50vw" : "15vw",
+          height: isMobile ? "50vh" : "15vh",
           overflow: "auto",
           display: "none",
           position: "absolute",
