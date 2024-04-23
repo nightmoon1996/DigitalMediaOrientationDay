@@ -7,6 +7,8 @@ import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPa
 import { OutputPass } from "three/examples/jsm/postprocessing/OutputPass.js";
 import { SSAOPass } from "three/examples/jsm/postprocessing/SSAOPass.js";
 import planetData from "./planetData.json";
+// import { GeistSans } from "geist/font/sans";
+// import { GeistMono } from "geist/font/mono";
 
 const Galaxy = () => {
   const ref = useRef();
@@ -305,8 +307,7 @@ const Galaxy = () => {
           left: "10px",
           fontSize: "2em",
           zIndex: 1,
-          // fontFamily: "Russo One",
-          // fontWeight: "400",
+          fontFamily: "sans-serif",
         }}
       >
         Project Orientation Day <br />
@@ -337,8 +338,7 @@ const Galaxy = () => {
           backgroundColor: "rgba(0, 0, 0, 0.5)",
           padding: "10px",
           borderRadius: "5px",
-          // fontFamily: "Russo One",
-          // fontWeight: "400",
+          fontFamily: "sans-serif",
         }}
       >
         <button
