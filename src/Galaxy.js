@@ -269,10 +269,10 @@ const Galaxy = () => {
 
       if (selectedPlanet) {
         selectedPlanet.scale.lerp(new THREE.Vector3(1.5, 1.5, 1.5), 0.1);
-        const targetPosition = selectedPlanet.position.clone();
-        targetPosition.z += 4;
-        camera.position.lerp(targetPosition, 0.02);
-        camera.lookAt(selectedPlanet.position);
+        // const targetPosition = selectedPlanet.position.clone();
+        // targetPosition.z += 4;
+        // camera.position.lerp(targetPosition, 0.02);
+        // camera.lookAt(selectedPlanet.position);
 
         const vector = new THREE.Vector3();
         vector.setFromMatrixPosition(selectedPlanet.matrixWorld);
